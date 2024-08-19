@@ -1,0 +1,17 @@
+server:
+  port: 8099
+  servlet:
+    context-path: /limit-service
+
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=jpro_task8
+  jpa:
+    show-sql: true
+
+#Лимит по умолчанию
+limits:
+  defaultDailyLimit: 10000
+  time-restore-limit: "0 0 0 * * *"
