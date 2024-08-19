@@ -6,13 +6,6 @@ create table limits (
 	daily_limit numeric(38,2)
 );
 
-
-create table settings(
-  id bigserial primary key,
-  key varchar(50) unique,
-  value varchar(255)
-);
-
 insert into limits (client_id, current_limit, reserved_sum, daily_limit) values (1, 10000, 0, 10000);
 insert into limits (client_id, current_limit, reserved_sum, daily_limit) values (2, 10000, 0, 10000);
 insert into limits (client_id, current_limit, reserved_sum, daily_limit) values (3, 10000, 0, 10000);

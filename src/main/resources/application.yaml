@@ -1,7 +1,7 @@
 server:
   port: 8099
   servlet:
-    context-path: /limit
+    context-path: /limit-service
 
 spring:
   datasource:
@@ -15,4 +15,3 @@ spring:
 limits:
   defaultDailyLimit: 10000
   time-restore-limit: "0 0 0 * * *"
-  addressesToChangeLimit: 0.0.0.0,localhost,127.0.0.1

@@ -63,10 +63,6 @@
       <artifactId>spring-context</artifactId>
       <groupId>org.springframework</groupId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
   </dependencies>
   <groupId>org.example</groupId>
 
