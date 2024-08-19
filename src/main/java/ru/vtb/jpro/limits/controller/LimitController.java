@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.math.BigDecimal;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class LimitController {
         @PathVariable
         @Parameter(description = "Идентификатор клиента")
         Long clientId) {
+
         return limitService.getLimits(clientId);
     }
 
@@ -54,6 +56,7 @@ public class LimitController {
         @RequestBody
         @Parameter(description = "Сумма платежа")
         RequestDTO requestDTO) {
+
         return limitService.reserveSum(clientId, requestDTO);
     }
 
@@ -66,6 +69,7 @@ public class LimitController {
         @RequestBody
         @Parameter(description = "Сумма платежа")
         RequestDTO requestDTO) {
+
         return limitService.applyReservedSum(clientId, requestDTO);
     }
 
@@ -78,16 +82,26 @@ public class LimitController {
         @RequestBody
         @Parameter(description = "Сумма платежа")
         RequestDTO requestDTO) {
+
         return limitService.revertReservedSum(clientId, requestDTO);
     }
 
+    @Operation(summary = "Получить значение суммы дневного лимита по умолчанию")
+    @GetMapping("/admin/getDefaultDailyLimit")
+    public BigDecimal getDefaultDailyLimit(SecurityContext context) {
+
+        return limitService.getDefaultDailyLimit();
+    }
+
     @Operation(summary = "Изменить сумму дневного лимита по умолчанию")
-    @PutMapping("/setDefaultDailyLimit")
+    @PutMapping("/admin/setDefaultDailyLimit")
     public ResponseDTO setDefaultDailyLimit(
         @RequestParam(name = "limit")
         @Parameter(description = "Идентификатор клиента")
-        BigDecimal newLimit) {
-        return limitService.setDefaultDailyLimit(newLimit);
+        BigDecimal newLimit,
+        SecurityContext context) {
+
+        return limitService.setDefaultDailyLimit(newLimit, context);
     }
 
     @ExceptionHandler
